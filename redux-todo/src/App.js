@@ -3,28 +3,41 @@ import { connect } from 'react-redux'
 
 import TodoForm from './components.form';
 
+import { addTask, taskToggle } from './actions'
+
 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { tasks: [] };
+  }
+
+  toggleHandler = (event, id) => {
+    event.preventDefault();
+    this.props.taskToggle(id);
+  };
+
+  render(){
+    return (
+        <div className="App">
+          <TodoForm addTask={this.props.addTask} />
+          <TodoList list={this.props.tasks} taskToggle={this.toggleHander} />
+        </div>
+      );
+    }
+  }
+
+  const mapStateToProps = state => {
+    return {
+      tasks: state.tasks
+    };
+  };
+
+export default connect (
+  mapStateToProps,
+  { addTask, taskToggle }
+)(App);
