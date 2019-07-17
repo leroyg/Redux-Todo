@@ -1,5 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux'
+
+import TodoForm from './components.form';
+
+
 import './App.css';
 
 function App() {
