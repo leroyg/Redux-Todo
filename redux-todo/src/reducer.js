@@ -14,14 +14,14 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 tasks: [
                     ...state.tasks,
-                    {id: Date.now(), value: action.payload, completed: false }
+                    { id: Date.now(), value: action.payload, completed: false }
                 ]
             };
         case TASK_TOGGLE:
             return {
                 ...state,
-                tasks: state.tasks.map(item => {
-                    if (item.id === action.payload) {
+                tasks: state.tasks.map((item, id) => {
+                    if (id === action.payload) {
                         return {
                             ...item,
                             completed: !item.completed

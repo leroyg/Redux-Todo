@@ -1,5 +1,5 @@
 export const ADD_TASK = 'ADD_TASK';
-export const TASK_TOGGLE = 'TOGGLE_TASK';
+export const TASK_TOGGLE = 'TASK_TOGGLE';
 
 export const addTask = task => {
     return {
